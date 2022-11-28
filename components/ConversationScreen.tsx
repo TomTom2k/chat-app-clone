@@ -122,9 +122,9 @@ const ConversationScreen = ({ conversation, messages }: { conversation: Conversa
             user: loggedInUser?.email
         })
 
-        setNewMessage('')
+        setNewMessage('');
 
-        scrollToBottom()
+        scrollToBottom();
     }
 
     const sendMessageOnEnter: KeyboardEventHandler<HTMLInputElement> = e => {
@@ -135,7 +135,8 @@ const ConversationScreen = ({ conversation, messages }: { conversation: Conversa
         }
     }
 
-    const sendMessageOnClick: MouseEventHandler<HTMLAnchorElement> = e => {
+
+    const sendMessageOnClick: MouseEventHandler<HTMLDivElement> = e => {
         e.preventDefault();
         if (!newMessage) return
         addMessageToDbAuthUpdateLastSeen()
@@ -182,9 +183,11 @@ const ConversationScreen = ({ conversation, messages }: { conversation: Conversa
                     value={newMessage}
                     onChange={e => setNewMessage(e.target.value)}
                     onKeyDown={sendMessageOnEnter} />
-                <IconButton onClick={sendMessageOnClick} disabled={!newMessage}>
+
+                <div onClick={sendMessageOnClick}>
                     <SendIcon />
-                </IconButton>
+                </div>
+
                 <IconButton>
                     <MicIcon />
                 </IconButton>
